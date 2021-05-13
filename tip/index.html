@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tip Calculator</title>
+    <!-- Custom Styles -->
+	<link rel="stylesheet" type="text/css" href="Tipcalculator.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+  <script type="text/javascript">
+		 // script.js
+		 //Custom function
+		 function calculatorTip() {
+		 // store the data of inputs
+		 var billAmount = document.getElementById("billAmount").value;
+		 var serviceQuality = document.getElementById("serviceQuality").value;
+		 var numpeople = document.getElementById("totalpeople").value;
+		 //Quick validation
+		 if(billAmount === "" || serviceQuality == 0) {
+		 	window.alert("Please enter some values to get this baby up and running!");
+		 	return; //this will prevent the function from continuing
+		 }
+		 //Check to see if this input is empty or less than or equal to 1
+		 if(numpeople === "" || numpeople <= 1) {
+		 	numpeople = 1;
+		 	document.getElementById("each").style.display = "none";
+		 }
+		 else {
+		 	document.getElementById("each").style.display = "block";
+			 }
+		 // Do some math!
+		 var total= (billAmount * serviceQuality) / numpeople;
+		 total =Math.round(total * 100) / 100;
+	     total = total.toFixed(2);
+	     // Display the tip!
+	     document.getElementById("totalTip").style.display = "block";
+	     document.getElementById("tip").innerHTML = total;
+	 }
+	      document.getElementById("totalTip").style.display = "none";
+	      document.getElementById("each").style.display = "none";
+
+		 document.getElementById("calculator").onclick=function(){
+		 	calculatorTip();
+		 }
+	</script>
+</head>
+<body>
+	<div id="container">
+		<h4 class="font-size-16 font-rubik">Welcome To Our Restaurant</h4>
+		<h4 class="font-size-12 font-rubik" style="color: red">❤️ ❤️ ❤️</h4>
+		<hr>
+		<h4>Tip Calculator</h4>
+		<div id="calculator">
+			<form>
+				<div>
+					<input type="text" id="billAmount" placeholder="How much your bill in Indian Rupee?">
+					</div>
+				<div><select id="serviceQuality" >
+						<option disabled selected value="0">How was your service?</option>
+						<option value="0.3">Outstanding</option>
+						<option value="0.2">Good</option>
+						<option value="0.15">It was okay</option>
+						<option value="0.1">Bad</option>
+						<option value="0.05">Terrible</option>
+				</select>
+			</div>
+					<input type="text" id="totalpeople" placeholder="How many people are sharing the bill?">
+			</form>
+			<button type="button" id="calculator" onclick="calculatorTip()">🌹&nbsp;Wish me some Tip&nbsp;🌹</button>
+		</div>
+		<div id="totalTip">
+			<sup>Rs.</sup><span id="tip">0.00</span><small id="each">each</small>	
+		</div>
+		<hr>
+		<div>
+			<h4 class="font-size-16 font-rubik">Have a Nice Journey</h4>
+			<h4 class="font-size-12 font-rubik" style="color: red">🌷 🌷 🌷</h4>
+		</div>
+	</div>
+	
+</body>
+</html>
